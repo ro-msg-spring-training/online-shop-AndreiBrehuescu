@@ -26,8 +26,4 @@ public class OrderDetail {
     private Product product;
 
     private Integer quantity;
-
-
-
-
 }
