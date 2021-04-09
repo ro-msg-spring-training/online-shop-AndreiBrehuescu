@@ -8,12 +8,11 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
-@ToString
+@Embeddable
 @EqualsAndHashCode
 public class OrderDetailId implements Serializable {
 
     private Integer idOrder;
-    private Integer idProdcut;
+    private Integer idProduct;
 
 }

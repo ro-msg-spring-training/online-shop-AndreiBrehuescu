@@ -1,5 +1,7 @@
 package ro.msg.learning.shop.models;
 
+
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;

@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "stock")
-@IdClass(OrderDetailId.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter  @Setter
@@ -14,13 +13,16 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class Stock {
 
-    @Id
+    @EmbeddedId
+    private StockId stockId;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idProduct")
     @JoinColumn(name = "idProduct")
     private Product product;
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idLocation")
     @JoinColumn(name = "idLocation")
     private Location location;
 

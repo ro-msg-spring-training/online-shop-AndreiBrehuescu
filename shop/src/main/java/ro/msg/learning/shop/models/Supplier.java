@@ -1,5 +1,7 @@
 package ro.msg.learning.shop.models;
 
+
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,8 +17,4 @@ import java.util.Set;
 public class Supplier extends BaseEntity{
 
     private String name;
-
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Product> products;
-
 }

@@ -1,3 +1,3 @@
 
-drop schema if exists `PUBLIC`;
-create schema if not exists `PUBLIC`;
+drop schema if exists `shop`;
+create schema if not exists `shop`;

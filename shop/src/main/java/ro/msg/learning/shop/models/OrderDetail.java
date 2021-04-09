@@ -1,30 +1,37 @@
 package ro.msg.learning.shop.models;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Table(name = "orderdetail")
-@IdClass(OrderDetailId.class)
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter @Setter
-@ToString
-@EqualsAndHashCode
 public class OrderDetail {
 
-    @Id
+    @EmbeddedId
+    private OrderDetailId orderDetailId;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idOrder")
     @JoinColumn(name = "idOrder")
     private Order order;
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("idProduct")
     @JoinColumn(name = "idProduct")
     private Product product;
 
     private Integer quantity;
 
+    public OrderDetail(Order order, Product product, Integer quantity) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+    }
 }

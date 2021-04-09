@@ -18,7 +18,4 @@ public class ProductCategory extends BaseEntity{
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "productCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Product> products;
-
 }
