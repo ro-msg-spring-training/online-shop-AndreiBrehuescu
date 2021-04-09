@@ -29,5 +29,5 @@ public class Order extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "address")
     private Address address;
-    
+
 }
