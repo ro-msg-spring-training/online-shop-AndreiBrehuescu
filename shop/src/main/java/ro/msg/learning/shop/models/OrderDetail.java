@@ -1,9 +1,6 @@
 package ro.msg.learning.shop.models;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Data
 @Table(name = "orderdetail")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 public class OrderDetail {
 
@@ -29,9 +27,4 @@ public class OrderDetail {
 
     private Integer quantity;
 
-    public OrderDetail(Order order, Product product, Integer quantity) {
-        this.order = order;
-        this.product = product;
-        this.quantity = quantity;
-    }
 }

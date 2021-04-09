@@ -29,7 +29,4 @@ public class Order extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "address")
     private Address address;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-    private List<OrderDetail> ordersDetails;
 }
