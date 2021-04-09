@@ -21,7 +21,4 @@ public class Customer extends BaseEntity{
     private String password;
     private String emailaddress;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private List<Order> orders;
-
 }
