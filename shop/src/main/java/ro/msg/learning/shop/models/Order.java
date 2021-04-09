@@ -25,11 +25,9 @@ public class Order extends BaseEntity{
     private Customer customer;
 
     private Timestamp createdAt;
-    private String addressCountry;
-    private String addressCity;
-    private String addressCounty;
-    private String addressStreetAddress;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-    private List<OrderDetail> ordersDetails;
+    @ManyToOne
+    @JoinColumn(name = "address")
+    private Address address;
+
 }

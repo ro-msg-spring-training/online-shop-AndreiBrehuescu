@@ -30,10 +30,6 @@ public class Product extends BaseEntity{
     @JoinColumn(name = "idSupplier", nullable = false)
     private Supplier supplier;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-    private List<Stock> stock;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-    private List<OrderDetail> ordersDetail;
+    private String imageUrl;
 
 }
