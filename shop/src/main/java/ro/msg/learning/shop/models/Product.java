@@ -31,4 +31,8 @@ public class Product extends BaseEntity{
     private Supplier supplier;
 
     private String imageUrl;
+
+
+
+
 }
