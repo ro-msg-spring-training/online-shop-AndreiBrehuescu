@@ -1,8 +1,6 @@
 package ro.msg.learning.shop.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,7 +8,10 @@ import javax.persistence.*;
 @Table(name = "stock")
 @IdClass(OrderDetailId.class)
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter  @Setter
+@ToString
+@EqualsAndHashCode
 public class Stock {
 
     @Id
@@ -24,10 +25,4 @@ public class Stock {
     private Location location;
 
     private Integer quantity;
-
-    public Stock(Product product, Location location, Integer quantity) {
-        this.product = product;
-        this.location = location;
-        this.quantity = quantity;
-    }
 }

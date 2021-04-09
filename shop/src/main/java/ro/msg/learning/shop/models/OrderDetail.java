@@ -1,16 +1,18 @@
 package ro.msg.learning.shop.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "orderdetail")
 @IdClass(OrderDetailId.class)
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
+@ToString
+@EqualsAndHashCode
 public class OrderDetail {
 
     @Id
@@ -25,9 +27,4 @@ public class OrderDetail {
 
     private Integer quantity;
 
-    public OrderDetail(Order order, Product product, Integer quantity) {
-        this.order = order;
-        this.product = product;
-        this.quantity = quantity;
-    }
 }
