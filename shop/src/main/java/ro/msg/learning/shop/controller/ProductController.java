@@ -56,10 +56,10 @@ public class ProductController {
         Optional<ProductDto> productDto1 = this.productService.update(productDto);
 
         if( productDto1.isEmpty()){
-            return productDto1.get();
+            return null;
         }
 
-        return null;
+        return productDto1.get();
     }
 
 
