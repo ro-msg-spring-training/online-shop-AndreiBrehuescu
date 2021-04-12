@@ -18,12 +18,10 @@ public class ProductController {
 
     private final IProduct productService;
 
-
     @GetMapping("/products")
     public List<ProductDto> getProducts(){
         return this.productService.getAllProducts();
     }
-
 
     @GetMapping("/products/{id}")
     public ProductDto getProduct(@PathVariable Integer id){

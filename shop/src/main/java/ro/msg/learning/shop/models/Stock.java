@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "stock")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter  @Setter
+@Getter @Setter
 @ToString
 @EqualsAndHashCode
 public class Stock {

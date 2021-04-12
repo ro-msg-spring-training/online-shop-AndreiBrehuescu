@@ -1,10 +1,12 @@
 package ro.msg.learning.shop.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
-@Builder
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = true)

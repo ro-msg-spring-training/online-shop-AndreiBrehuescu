@@ -5,7 +5,7 @@ import ro.msg.learning.shop.dto.ProductCategoryDto;
 import ro.msg.learning.shop.models.ProductCategory;
 
 @Component
-public class ProductCategoryConverter extends BaseConvertor<ProductCategory, ProductCategoryDto> {
+public class ProductCategoryConvertor extends BaseConvertor<ProductCategory, ProductCategoryDto> {
 
 
     public ProductCategory getModel(ProductCategoryDto dto){

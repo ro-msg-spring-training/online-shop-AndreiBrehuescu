@@ -1,10 +1,8 @@
 package ro.msg.learning.shop.service.implementation;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
-import ro.msg.learning.shop.converter.ProductCategoryConverter;
+import ro.msg.learning.shop.converter.ProductCategoryConvertor;
 import ro.msg.learning.shop.converter.ProductConvertor;
 import ro.msg.learning.shop.converter.SupplierConvertor;
 import ro.msg.learning.shop.dto.ProductDto;
@@ -25,7 +23,7 @@ public class ProductServiceImplementation implements IProduct {
 
     private final ProductRepository productRepository;
     private final ProductConvertor productConvertor;
-    private final ProductCategoryConverter productCategoryConverter;
+    private final ProductCategoryConvertor productCategoryConverter;
     private final SupplierConvertor supplierConvertor;
 
 

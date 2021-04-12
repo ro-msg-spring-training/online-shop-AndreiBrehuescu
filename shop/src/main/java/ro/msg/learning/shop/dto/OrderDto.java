@@ -14,11 +14,14 @@ import java.util.List;
 @EqualsAndHashCode
 public class OrderDto implements Serializable {
 
-    private Timestamp timestamp;
-
-    private AddressDto address;
-    private List<ProductLessDetailsDto> products;
+    private Integer id;
 
     private Integer idCustomer;
+
+    private Timestamp createdAt;
+
+    private AddressDto address;
+
+    private List<OrderDetailsDto> detailsDtos;
 
 }

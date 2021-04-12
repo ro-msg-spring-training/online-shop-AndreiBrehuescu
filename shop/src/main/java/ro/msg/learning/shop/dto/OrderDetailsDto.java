@@ -9,8 +9,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class ProductLessDetailsDto implements Serializable {
+public class OrderDetailsDto implements Serializable {
 
-    private Integer id;
-    private Double weight;
+    private Integer idOrder;
+    private Integer idProduct;
+    private Integer quantity;
+
 }
