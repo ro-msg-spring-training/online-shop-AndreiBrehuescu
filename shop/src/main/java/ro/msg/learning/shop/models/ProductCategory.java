@@ -6,14 +6,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
+
+@Data
 @Entity
-@Builder
-@Table(name = "productcategory")
-@Getter @Setter
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@Builder
 public class ProductCategory extends BaseEntity{
 
     private String name;

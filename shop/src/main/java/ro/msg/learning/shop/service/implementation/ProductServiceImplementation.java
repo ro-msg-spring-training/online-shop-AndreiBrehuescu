@@ -3,6 +3,7 @@ package ro.msg.learning.shop.service.implementation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
+import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.converter.ProductCategoryConverter;
 import ro.msg.learning.shop.converter.ProductConvertor;
 import ro.msg.learning.shop.converter.SupplierConvertor;
@@ -19,13 +20,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class ProductServiceImplementation implements IProduct {
 
     private final ProductRepository productRepository;
     private final ProductConvertor productConvertor;
-    private final ProductCategory productCategory;
     private final ProductCategoryConverter productCategoryConverter;
-    private final Supplier supplier;
     private final SupplierConvertor supplierConvertor;
 
 
@@ -73,13 +73,13 @@ public class ProductServiceImplementation implements IProduct {
     }
 
     @Override
-    public void update(ProductDto productDto) {
+    public Optional<ProductDto> update(ProductDto productDto) {
         Optional<Product> productModel = this.productRepository.findById(productDto.getId());
 
 
         if( productModel.isEmpty()){
             this.productRepository.save(this.productConvertor.getModel(productDto));
-            return;
+            return Optional.of(productDto);
         }
 
         Supplier supplier = this.supplierConvertor.getModel(productDto.getSupplierDto());
@@ -97,5 +97,7 @@ public class ProductServiceImplementation implements IProduct {
         existingProduct.setName(productDto.getName());
 
         this.productRepository.save(existingProduct);
+
+        return Optional.of(productDto);
     }
 }

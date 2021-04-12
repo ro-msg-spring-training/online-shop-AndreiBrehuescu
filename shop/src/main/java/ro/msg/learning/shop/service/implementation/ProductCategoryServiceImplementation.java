@@ -1,6 +1,7 @@
 package ro.msg.learning.shop.service.implementation;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.converter.ProductCategoryConverter;
 import ro.msg.learning.shop.dto.ProductCategoryDto;
 import ro.msg.learning.shop.models.ProductCategory;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class ProductCategoryServiceImplementation  implements IProductCategory {
 
     private final ProductCategoryRepository productCategoryRepository;

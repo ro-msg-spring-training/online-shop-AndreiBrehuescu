@@ -1,5 +1,6 @@
 package ro.msg.learning.shop.converter;
 
+import org.springframework.stereotype.Component;
 import ro.msg.learning.shop.dto.ProductCategoryDto;
 import ro.msg.learning.shop.dto.ProductDto;
 import ro.msg.learning.shop.dto.SupplierDto;
@@ -7,7 +8,11 @@ import ro.msg.learning.shop.models.Product;
 import ro.msg.learning.shop.models.ProductCategory;
 import ro.msg.learning.shop.models.Supplier;
 
+import javax.persistence.Converter;
+
+@Component
 public class ProductConvertor extends BaseConvertor<Product, ProductDto> {
+
     @Override
     public Product getModel(ProductDto productDto) {
         ProductCategory productCategory = ProductCategory.builder()

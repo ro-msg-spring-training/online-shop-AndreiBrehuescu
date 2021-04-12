@@ -2,6 +2,7 @@ package ro.msg.learning.shop.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ro.msg.learning.shop.converter.SupplierConvertor;
 import ro.msg.learning.shop.dto.ProductDto;
 import ro.msg.learning.shop.dto.SupplierDto;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class SupplierServiceImplementation implements ISupplier {
 
     private final SupplierRepository supplierRepository;

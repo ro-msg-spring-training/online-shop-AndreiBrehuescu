@@ -1,5 +1,6 @@
 package ro.msg.learning.shop.service.interfaces;
 
+import org.springframework.context.annotation.Bean;
 import ro.msg.learning.shop.dto.ProductDto;
 import ro.msg.learning.shop.models.Product;
 
@@ -15,6 +16,6 @@ public interface IProduct {
 
     void deleteProductById(Integer id);
 
-    void update(ProductDto productDto);
+    Optional<ProductDto> update(ProductDto productDto);
 }
 
