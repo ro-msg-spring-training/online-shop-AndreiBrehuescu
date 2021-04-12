@@ -1,8 +1,8 @@
 package ro.msg.learning.shop.converter.interfaces;
 
-public interface IConverter<Entity, Dto> {
+public interface IConverter<Model, Dto> {
 
-    Entity getEntity(Dto dto);
+    Model getModel(Dto dto);
 
-    Dto getDto(Entity entity);
+    Dto getDto(Model model);
 }

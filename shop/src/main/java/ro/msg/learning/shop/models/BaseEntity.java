@@ -1,9 +1,6 @@
 package ro.msg.learning.shop.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +12,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter @Setter
 public class BaseEntity {
 
     @Id
