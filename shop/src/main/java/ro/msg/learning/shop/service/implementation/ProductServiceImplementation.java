@@ -1,35 +1,101 @@
 package ro.msg.learning.shop.service.implementation;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
+import ro.msg.learning.shop.converter.ProductCategoryConverter;
+import ro.msg.learning.shop.converter.ProductConvertor;
+import ro.msg.learning.shop.converter.SupplierConvertor;
+import ro.msg.learning.shop.dto.ProductDto;
 import ro.msg.learning.shop.models.Product;
+import ro.msg.learning.shop.models.ProductCategory;
+import ro.msg.learning.shop.models.Supplier;
 import ro.msg.learning.shop.repository.ProductRepository;
 import ro.msg.learning.shop.service.interfaces.IProduct;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class ProductServiceImplementation implements IProduct {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final ProductConvertor productConvertor;
+    private final ProductCategory productCategory;
+    private final ProductCategoryConverter productCategoryConverter;
+    private final Supplier supplier;
+    private final SupplierConvertor supplierConvertor;
+
 
     @Override
-    public List<Product> getAllProducts() {
-        return this.productRepository.findAll();
+    public List<ProductDto> getAllProducts() {
+        List<Product> productList = this.productRepository.findAll();
+
+        Collection<ProductDto> productDtos = this.productConvertor.convertModelToDto(productList);
+
+        return new ArrayList<>(productDtos);
     }
 
     @Override
-    public void addProduct(Product product) {
+    public Optional<ProductDto> getProductById(Integer id) {
+        Optional<Product> product = this.productRepository.findById(id);
+
+        Optional<ProductDto> productDto = Optional.empty();
+
+        if(product.isEmpty()){
+            return productDto;
+        }
+
+        ProductDto productDto1 = this.productConvertor.getDto(product.get());
+
+        return Optional.of(productDto1);
+    }
+
+    @Override
+    public void addProduct(ProductDto productDto) {
+        Product product = this.productConvertor.getModel(productDto);
+
         this.productRepository.save(product);
     }
 
     @Override
-    public Optional<Product> getProductById(Integer id) {
-        return this.productRepository.findById(id);
+    public void deleteProductById(Integer id) {
+        Optional<Product> product = this.productRepository.findById(id);
+
+        if( product.isEmpty() ){
+            return;
+        }
+
+        this.productRepository.deleteById(id);
+
     }
 
     @Override
-    public void deleteProductById(Integer id) {
-        this.productRepository.deleteById(id);
+    public void update(ProductDto productDto) {
+        Optional<Product> productModel = this.productRepository.findById(productDto.getId());
+
+
+        if( productModel.isEmpty()){
+            this.productRepository.save(this.productConvertor.getModel(productDto));
+            return;
+        }
+
+        Supplier supplier = this.supplierConvertor.getModel(productDto.getSupplierDto());
+        ProductCategory productCategory = this.productCategoryConverter.getModel(productDto.getProductCategoryDto());
+
+        Product existingProduct = productModel.get();
+        Product newProduct = this.productConvertor.getModel(productDto);
+
+        existingProduct.setProductCategory(productCategory);
+        existingProduct.setSupplier(supplier);
+        existingProduct.setPrice(productDto.getPrice());
+        existingProduct.setDescription(productDto.getDescription());
+        existingProduct.setImageUrl(productDto.getImageUrl());
+        existingProduct.setWeight(productDto.getWeight());
+        existingProduct.setName(productDto.getName());
+
+        this.productRepository.save(existingProduct);
     }
 }

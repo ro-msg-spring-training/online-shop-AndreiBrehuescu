@@ -14,7 +14,7 @@ public abstract class BaseConvertor<Model, Dto> implements IConverter<Model, Dto
                 .collect(Collectors.toList());
     }
 
-    public Collection<Dto> convertEntityToDto(Collection<Model> entities){
+    public Collection<Dto> convertModelToDto(Collection<Model> entities){
         return entities.stream()
                 .map(this::getDto)
                 .collect(Collectors.toList());
