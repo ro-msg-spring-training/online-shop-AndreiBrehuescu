@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
+@Builder
 @Table(name = "product")
 @Getter @Setter
 @NoArgsConstructor

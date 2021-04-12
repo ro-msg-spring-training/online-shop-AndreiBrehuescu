@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Builder
 @Table(name = "supplier")
 @Getter @Setter
 @NoArgsConstructor

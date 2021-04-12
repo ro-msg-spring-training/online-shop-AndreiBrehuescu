@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@Builder
 @Data
 @Table(name = "order")
 @Getter @Setter
