@@ -19,6 +19,6 @@ public class Location extends  BaseEntity{
     private String name;
 
     @OneToOne
-    @JoinTable(name = "address")
+    @JoinColumn(name = "address")
     private Address address;
 }

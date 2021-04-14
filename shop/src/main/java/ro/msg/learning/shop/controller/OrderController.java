@@ -46,7 +46,6 @@ public class OrderController {
     public void deleteOrder(@PathVariable Integer id){
         this.orderService.deleteOrderById(id);
 
-        //return new ResponseEntity<>("Order deleted", HttpStatus.CREATED);
         return;
     }
 

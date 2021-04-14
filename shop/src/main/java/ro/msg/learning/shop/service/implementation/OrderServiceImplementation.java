@@ -10,8 +10,10 @@ import ro.msg.learning.shop.dto.StockDto;
 import ro.msg.learning.shop.models.*;
 import ro.msg.learning.shop.repository.*;
 import ro.msg.learning.shop.service.interfaces.IOrder;
+import ro.msg.learning.shop.stategy.SingleLocationStrategy;
 import ro.msg.learning.shop.stategy.interfaces.IStrategy;
 
+import javax.persistence.criteria.Order;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -65,26 +67,52 @@ public class OrderServiceImplementation implements IOrder {
 
         addressRepository.save(address);
 
-        List<OrderTable> orderTables = new ArrayList<OrderTable>();
+        List<OrderTable> orderTables = new ArrayList<>();
 
-        for(StockDto stockDto : stockDtos){
-            Optional<Location> location = locationRepository.findById(stockDto.getIdLocation());
-            //Optional<Customer> customer = customerRepository.findAllById(orderDto.getCustomerDto().g)
-
-            OrderTable orderTable = OrderTable.builder()
+        boolean single = false;
+        OrderTable order = null;
+        OrderTable orderTable = null;
+        if(strategy.getClass() == SingleLocationStrategy.class){
+            Optional<Location> location = locationRepository.findById(stockDtos.get(0).getIdLocation());
+             orderTable = OrderTable.builder()
                     .location(location.get())
                     .customer(customerConvertor.getModel(orderDto.getCustomerDto()))
                     .createdAt(orderDto.getCreatedAt())
                     .address(address)
                     .build();
 
-            orderRepository.save(orderTable);
+            order = orderRepository.save(orderTable);
             orderTables.add(orderTable);
+            single = true;
+        }
+
+        for(StockDto stockDto : stockDtos){
+            Optional<Location> location = locationRepository.findById(stockDto.getIdLocation());
+            //Optional<Customer> customer = customerRepository.findAllById(orderDto.getCustomerDto().g)
+
+
+
+            if(!single) {
+                orderTable = OrderTable.builder()
+                        .location(location.get())
+                        .customer(customerConvertor.getModel(orderDto.getCustomerDto()))
+                        .createdAt(orderDto.getCreatedAt())
+                        .address(address)
+                        .build();
+
+                order = orderRepository.save(orderTable);
+                orderTables.add(orderTable);
+            }
+            OrderDetailId orderDetailId = OrderDetailId.builder()
+                    .idOrder(order.getId())
+                    .idProduct(stockDto.getIdProduct())
+                    .build();
 
             OrderDetail orderDetail = OrderDetail.builder()
                     .orderTable(orderTable)
                     .product(productRepository.findById(stockDto.getIdProduct()).get())
                     .quantity(stockDto.getQuantity())
+                    .orderDetailId(orderDetailId)
                     .build();
             orderDetailRepository.save(orderDetail);
 

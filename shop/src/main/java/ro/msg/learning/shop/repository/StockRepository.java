@@ -9,7 +9,7 @@ import java.util.List;
 public interface StockRepository extends JpaRepository<Stock, StockId> {
 
     //gaseste stockul care are cantitatea mai mare decat cea comandata pentru produs
-    List<Stock> findStockByProductIdAndQuantityGreaterThanEqualAndLocationId(Integer idProduct, Integer quantity, Integer idLocation);
+    Stock findStockByProductIdAndQuantityGreaterThanEqualAndLocationId(Integer idProduct, Integer quantity, Integer idLocation);
 
     //stockul cu produsul ce are minim cantitatea cerura , lista cu stockuri ordonate descrescator
     List<Stock> findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(Integer idProduct, Integer quantity);

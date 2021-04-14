@@ -28,21 +28,21 @@ public class SingleLocationStrategy implements IStrategy {
 
         for(Location location : locationRepository.findAll()) {
             found = true;
-            List<StockDto> stockDtoList = new ArrayList<StockDto>();
+            List<StockDto> stockDtoList = new ArrayList<>();
             for (OrderDetailsDto orderDetails : orderDto.getDetailsDtos()) {
-                List<Stock> stockList = stockRepository
+                Stock stockList = stockRepository
                         .findStockByProductIdAndQuantityGreaterThanEqualAndLocationId(orderDetails.getIdProduct(), orderDetails.getQuantity(), location.getId());
 
-                if(stockList.size() != 0){
+                if(stockList == null){
                     found = false;
                     break;
                 }
-                Stock stock = stockList.get(0);
+                Stock stock = stockList;
                 stockDtoList.add(
                         StockDto.builder()
                                 .idLocation(stock.getStockId().getIdLocation())
                                 .idProduct(stock.getStockId().getIdProduct())
-                                .quantity(stock.getQuantity())
+                                .quantity(orderDetails.getQuantity())
                                 .build()
                 );
             }

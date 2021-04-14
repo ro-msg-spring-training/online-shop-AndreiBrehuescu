@@ -46,7 +46,6 @@ public class ProductController {
     public void deleteProduct(@PathVariable Integer id){
         this.productService.deleteProductById(id);
 
-        //return new ResponseEntity<>("Product deleted", HttpStatus.CREATED);
         return;
     }
 

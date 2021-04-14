@@ -26,7 +26,7 @@ public class MultipleLocationStrategy implements IStrategy {
             List<Stock> stockList = stockRepository
                     .findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(orderDetailsDto.getIdProduct(), orderDetailsDto.getQuantity());
 
-            if(stockList.size() == 0 ){
+            if(stockList == null ){
                 throw new RuntimeException("There is no stock for this product!");
             }else{
                 Stock stock = stockList.get(0);
@@ -34,12 +34,12 @@ public class MultipleLocationStrategy implements IStrategy {
                         StockDto.builder()
                                 .idLocation(stock.getStockId().getIdLocation())
                                 .idProduct(stock.getStockId().getIdProduct())
-                                .quantity(stock.getQuantity())
+                                .quantity(orderDetailsDto.getQuantity())
                                 .build()
                 );
             }
         }
 
-        return null;
+        return stockDtoList;
     }
 }

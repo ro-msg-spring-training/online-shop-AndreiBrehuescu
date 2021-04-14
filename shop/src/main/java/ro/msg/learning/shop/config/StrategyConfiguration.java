@@ -19,8 +19,7 @@ public class StrategyConfiguration {
     private final LocationRepository locationRepository;
 
     @Bean
-    public IStrategy selectStrategy(@Value("/strat/{strategy}") String strategy){
-        strategy = "single";
+    public IStrategy selectStrategy(@Value("${strategy}") String strategy){
         if(strategy.equals("single")){
             return new SingleLocationStrategy(stockRepository, locationRepository);
         }else if(strategy.equals("abundant")){
