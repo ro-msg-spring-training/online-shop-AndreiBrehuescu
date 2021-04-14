@@ -88,9 +88,6 @@ public class OrderServiceImplementation implements IOrder {
 
         for(StockDto stockDto : stockDtos){
             Optional<Location> location = locationRepository.findById(stockDto.getIdLocation());
-            //Optional<Customer> customer = customerRepository.findAllById(orderDto.getCustomerDto().g)
-
-
 
             if(!single) {
                 orderTable = OrderTable.builder()
