@@ -20,9 +20,10 @@ public class ProductDto implements Serializable {
     private String description;
     private BigDecimal price;
     private Double weight;
-    private String imageUrl;
 
     private ProductCategoryDto productCategoryDto;
     private SupplierDto supplierDto;
+
+    private String imageUrl;
 
 }

@@ -9,13 +9,13 @@ import java.util.List;
 @Entity
 @Builder
 @Data
-@Table(name = "order")
+@Table(name = "ordertable")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Order extends BaseEntity{
+public class OrderTable extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idLocation")

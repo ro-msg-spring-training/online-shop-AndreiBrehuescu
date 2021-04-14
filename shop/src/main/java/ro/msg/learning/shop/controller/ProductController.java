@@ -52,6 +52,7 @@ public class ProductController {
 
 
     @PutMapping("/products/{id}")
+    @ResponseBody
     public ProductDto updateProduct(@PathVariable Integer id, @RequestBody ProductDto productDto){
         Optional<ProductDto> productDto1 = this.productService.update(productDto);
 
@@ -61,6 +62,5 @@ public class ProductController {
 
         return productDto1.get();
     }
-
 
 }

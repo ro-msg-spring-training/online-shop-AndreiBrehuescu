@@ -12,8 +12,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class StockDto implements Serializable {
 
-    private Integer id;
-
     private Integer idProduct;
 
     private Integer idLocation;

@@ -16,7 +16,9 @@ public class OrderDto implements Serializable {
 
     private Integer id;
 
-    private Integer idCustomer;
+    private LocationDto locationDto;
+
+    private CustomerDto customerDto;
 
     private Timestamp createdAt;
 
