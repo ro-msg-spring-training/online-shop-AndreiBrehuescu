@@ -15,6 +15,7 @@ import ro.msg.learning.shop.models.Stock;
 import ro.msg.learning.shop.models.StockId;
 import ro.msg.learning.shop.repository.LocationRepository;
 import ro.msg.learning.shop.repository.StockRepository;
+import ro.msg.learning.shop.stategy.MultipleLocationStrategy;
 import ro.msg.learning.shop.stategy.SingleLocationStrategy;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SingleLocationUnitTest {
+public class MultipleLocationUnitTest {
 
     @Mock
     private StockRepository stockRepository;
@@ -34,11 +35,12 @@ public class SingleLocationUnitTest {
     private LocationRepository locationRepository;
 
     @InjectMocks
-    private SingleLocationStrategy strategy;
+    private MultipleLocationStrategy strategy;
 
     private Location location;
     private List<Location> locations;
-    private Product product;
+    private Product product1;
+    private Product product2;
     private StockId stockId;
     private Stock stock;
     private List<Stock> stocks;
@@ -51,25 +53,51 @@ public class SingleLocationUnitTest {
         location.setId(1);
         locations = new ArrayList<>();
         locations.add(location);
+        location = Location.builder()
+                .name("testProduct2")
+                .build();
+        location.setId(2);
+        locations.add(location);
 
-        product = Product.builder()
+        product1 = Product.builder()
                 .name("testProduct")
                 .build();
-        product.setId(1);
+        product1.setId(1);
+
+        product2 = Product.builder()
+                .name("testProduct2")
+                .build();
+        product2.setId(2);
+
 
         stockId = StockId.builder()
                 .idLocation(1)
                 .idProduct(1)
                 .build();
 
+
         stock = Stock.builder()
                 .stockId(stockId)
-                .product(product)
+                .product(product1)
                 .location(location)
                 .quantity(50)
                 .build();
         stocks = new ArrayList<>();
         stocks.add(stock);
+
+
+        stockId = StockId.builder()
+                .idLocation(1)
+                .idProduct(2)
+                .build();
+
+
+        stock = Stock.builder()
+                .stockId(stockId)
+                .product(product1)
+                .location(location)
+                .quantity(50)
+                .build();
 
         Mockito.when(locationRepository.findAll()).thenReturn(locations);
     }
@@ -77,11 +105,20 @@ public class SingleLocationUnitTest {
 
     @Test
     public void stockNotEmpty() {
-        Mockito.when(stockRepository.findStockByProductIdAndQuantityGreaterThanEqualAndLocationId(product.getId(),5,location.getId())).thenReturn(stocks.get(0));
+        Mockito.when(stockRepository.findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(product1.getId(),5)).thenReturn(stocks);
+        Mockito.when(stockRepository.findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(product2.getId(),5)).thenReturn(stocks);
+
         List<OrderDetailsDto> orderDetailDtos = new ArrayList<>();
+
         orderDetailDtos.add(
                 OrderDetailsDto.builder()
-                        .idProduct(product.getId())
+                        .idProduct(product1.getId())
+                        .quantity(5)
+                        .build()
+        );
+        orderDetailDtos.add(
+                OrderDetailsDto.builder()
+                        .idProduct(product2.getId())
                         .quantity(5)
                         .build()
         );
@@ -95,12 +132,21 @@ public class SingleLocationUnitTest {
     @Test
     public void stockNotFound(){
 
-        Mockito.when(stockRepository.findStockByProductIdAndQuantityGreaterThanEqualAndLocationId(product.getId(),500,location.getId())).thenReturn(null);
+        Mockito.when(stockRepository.findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(product1.getId(),5)).thenReturn(null);
+        Mockito.when(stockRepository.findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(product2.getId(),5)).thenReturn(null);
+
         List<OrderDetailsDto> orderDetailDtos = new ArrayList<>();
+
         orderDetailDtos.add(
                 OrderDetailsDto.builder()
-                        .idProduct(product.getId())
-                        .quantity(500)
+                        .idProduct(product1.getId())
+                        .quantity(5)
+                        .build()
+        );
+        orderDetailDtos.add(
+                OrderDetailsDto.builder()
+                        .idProduct(product2.getId())
+                        .quantity(5)
                         .build()
         );
 
@@ -109,6 +155,4 @@ public class SingleLocationUnitTest {
                 .build();
         assertThrows(RuntimeException.class, () -> strategy.findStock(orderDto));
     }
-
-
 }

@@ -14,5 +14,5 @@ public interface StockRepository extends JpaRepository<Stock, StockId> {
     //stockul cu produsul ce are minim cantitatea cerura , lista cu stockuri ordonate descrescator
     List<Stock> findStockByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(Integer idProduct, Integer quantity);
 
-    Stock findByProductIdAndAndLocationId(Integer idProduct, Integer idLocation);
+    Stock findByStockId(StockId stockId);
 }
