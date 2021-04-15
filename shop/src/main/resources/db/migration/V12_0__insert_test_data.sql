@@ -1,7 +1,7 @@
 
 
 INSERT INTO CUSTOMER(firstname, lastname, username, password, emailaddress)
-VALUES ( 'Andrei', 'Brehuescu', 'andre123', '123456789', 'andrei@gmail.com' ),
+VALUES ( 'Andrei', 'Brehuescu', 'andre123', '$2a$10$SG8i6dwjNdRHYbiYo0fpI.FT/reWNsdPs7pwjr6PNS9CxipDaZGFW', 'andrei@gmail.com' ),
        ('Dani' , 'Moc', 'danimoc123', 'abcdefgh', 'danidani@gmail.com'),
        ('gabriel', 'tomas', 'tomas123', 'tomasg', 'gabrTomas@gmail.con');
 
