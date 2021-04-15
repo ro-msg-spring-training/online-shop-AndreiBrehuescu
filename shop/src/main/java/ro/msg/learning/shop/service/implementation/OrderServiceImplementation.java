@@ -118,7 +118,7 @@ public class OrderServiceImplementation implements IOrder {
                     .idProduct(stockDto.getIdProduct())
                     .idLocation(stockDto.getIdLocation())
                     .build();
-            Stock stock = stockRepository.findByStockId(stockId);
+            Stock stock = stockRepository.findById(stockId).get();
             stock.setQuantity(stock.getQuantity() - stockDto.getQuantity());
             stockRepository.save(stock);
         }
