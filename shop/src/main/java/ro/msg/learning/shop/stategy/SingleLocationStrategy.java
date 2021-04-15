@@ -33,7 +33,7 @@ public class SingleLocationStrategy implements IStrategy {
                 Stock stockList = stockRepository
                         .findStockByProductIdAndQuantityGreaterThanEqualAndLocationId(orderDetails.getIdProduct(), orderDetails.getQuantity(), location.getId());
 
-                if(stockList == null){
+                if(stockList == null || stockList.getQuantity() < orderDetails.getQuantity()){
                     found = false;
                     break;
                 }

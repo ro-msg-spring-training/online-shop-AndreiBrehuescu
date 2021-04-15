@@ -20,9 +20,9 @@ public class StrategyConfiguration {
 
     @Bean
     public IStrategy selectStrategy(@Value("${strategy}") String strategy){
-        if(strategy.equals("single")){
+        if(strategy.equals(Strategies.single.toString())){
             return new SingleLocationStrategy(stockRepository, locationRepository);
-        }else if(strategy.equals("abundant")){
+        }else if(strategy.equals(Strategies.abundant.toString())){
             return new MultipleLocationStrategy(stockRepository);
         }else
             throw new RuntimeException("Invalid strategy selected!!");
