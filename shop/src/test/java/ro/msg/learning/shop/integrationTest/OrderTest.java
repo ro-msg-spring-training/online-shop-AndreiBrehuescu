@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import ro.msg.learning.shop.ShopApplication;
 import ro.msg.learning.shop.converter.AddressConvertor;
@@ -27,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK,
         classes = ShopApplication.class)
-@ActiveProfiles("test")
 public class OrderTest {
-
 
     @Autowired
     private CustomerRepository customerRepository;

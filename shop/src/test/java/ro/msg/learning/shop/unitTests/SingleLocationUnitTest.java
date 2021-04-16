@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import ro.msg.learning.shop.dto.OrderDetailsDto;
 import ro.msg.learning.shop.dto.OrderDto;
 import ro.msg.learning.shop.models.Location;
@@ -25,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestPropertySource(locations = "/application-integrationtest.properties")
 public class SingleLocationUnitTest {
 
     @Mock
