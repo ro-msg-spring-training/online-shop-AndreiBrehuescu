@@ -15,6 +15,4 @@ public class StockId implements Serializable {
 
     private Integer idProduct;
     private Integer idLocation;
-
-
 }
