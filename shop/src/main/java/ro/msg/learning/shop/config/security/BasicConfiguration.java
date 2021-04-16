@@ -16,6 +16,7 @@ import ro.msg.learning.shop.service.implementation.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 @Profile("with-basic")
 public class BasicConfiguration extends WebSecurityConfigurerAdapter {
 
