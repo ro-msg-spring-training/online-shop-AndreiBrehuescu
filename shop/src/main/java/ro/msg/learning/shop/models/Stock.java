@@ -5,10 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
+@Builder
 @Table(name = "stock")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter  @Setter
+@Getter @Setter
 @ToString
 @EqualsAndHashCode
 public class Stock {

@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
+@Builder
 @Table(name = "revenue")
 @Getter @Setter
 @NoArgsConstructor

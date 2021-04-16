@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
+@Builder
 @Data
 @Table(name = "orderdetail")
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class OrderDetail {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idOrder")
     @JoinColumn(name = "idOrder")
-    private Order order;
+    private OrderTable orderTable;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idProduct")

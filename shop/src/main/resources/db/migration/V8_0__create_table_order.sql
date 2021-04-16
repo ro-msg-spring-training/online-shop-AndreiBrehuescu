@@ -1,5 +1,5 @@
 
-create table if not exists `order`(
+create table if not exists `ordertable`(
     `id` Integer not null AUTO_INCREMENT PRIMARY KEY,
     `idLocation` Integer,
     `idCustomer` Integer,

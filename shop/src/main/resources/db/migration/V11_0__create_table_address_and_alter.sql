@@ -15,9 +15,9 @@ ADD COLUMN `address` Integer;
 ALTER TABLE `location`
 ADD FOREIGN KEY (`address`) REFERENCES address(id);
 
-ALTER TABLE `order`
+ALTER TABLE `ordertable`
 DROP COLUMN `addressCountry`, `addressCity`, `addressCounty`, `addressStreetAddress`;
-ALTER TABLE `order`
+ALTER TABLE `ordertable`
 ADD COLUMN `address` Integer;
-ALTER TABLE `order`
+ALTER TABLE `ordertable`
 ADD FOREIGN KEY (`address`) REFERENCES address(id);

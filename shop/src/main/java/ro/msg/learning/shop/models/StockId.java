@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
